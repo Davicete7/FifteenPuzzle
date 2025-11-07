@@ -1,0 +1,2 @@
+# FifteenPuzzle
+A robust implementation of uninformed and informed search algorithms to solve the classic logic game, the N-Puzzle, with a specific focus on the Fifteen Puzzle (4x4).  This project allows users to define an initial state and apply various Artificial Intelligence search methods to find the optimal or sub-optimal solution path, with step-by-step visualization and performance analysis.
