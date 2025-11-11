@@ -83,67 +83,72 @@ def breadthFirstSearch(initialState, goalState, order, timeLimit=15):
 # ---------------------------- 2. Depth-First Search (DFS) ----------------------------
 def depthFirstSearch(initialState, goalState, order, timeLimit=15):
     """
-    Performs the Depth-First Search (DFS) algorithm.
-    Uses a stack (LIFO) and a strict visited set to prevent infinite loops.
-
-    Args:
-        initialState (PuzzleState): The starting configuration.
-        goalState (PuzzleState): The target configuration.
-        order (str): The order of successor expansion (e.g., 'DULR').
-        timeLimit (int): Maximum time (in seconds) allowed for the search.
-
-    Returns:
-        tuple: (solutionPath, nodesExpanded, maxFringeSize) or None if unsolvable.
+    Robust DFS:
+      - 'seen' marks ON PUSH to avoid duplicates in the frontier
+      - Controlled randomness WITHOUT activating the internal random of getSuccessors
+      - Respects priority with LIFO (push in reverse)
     """
-    
-    startTime = time.time()
-    
-    # Stack (LIFO: use Python list and append/pop) for the frontier
-    frontier = [initialState] 
-    
-    # Set of visited states to avoid cycles (CRUCIAL for general DFS on graphs/trees with cycles)
-    visited = {initialState} 
-    
+    import time, random
+
+    start = time.time()
+
+    # Normalize the input order
+    order = (order or "DULR").upper()
+    random_mode = order.startswith("R")
+    # Base deterministic order that we will ALWAYS pass to getSuccessors (never 'R')
+    base_letters = [c for c in (order if not random_mode else "DULR") if c in "DULR"]
+    if not base_letters:
+        base_letters = list("DULR")
+
+    # Utility: immutable key of the board (independent of __eq__/__hash__)
+    def key_of(state):
+        return tuple(tuple(row) for row in state.board)
+
+    stack = [initialState]
+    seen = { key_of(initialState) }   # mark on PUSH
     nodesExpanded = 0
     maxFringeSize = 1
 
-    # Main Search Loop
-    while frontier:
-        
-        # Check time limit
-        if time.time() - startTime > timeLimit:
+    while stack:
+        if time.time() - start > timeLimit:
             print("Warning: Time limit exceeded (15s) for DFS.")
-            return None 
-            
-        # Update max fringe size for statistics
-        maxFringeSize = max(maxFringeSize, len(frontier))
-        
-        # Get the most recently added node (LIFO: last one in)
-        currentState = frontier.pop()
-        
-        # Goal Check
-        if currentState.isGoal(goalState):
-            solutionPath = currentState.getSolutionPath()
-            return solutionPath, nodesExpanded, maxFringeSize
+            return None
+
+        current = stack.pop()
+
+        # Goal check?
+        if current.isGoal(goalState):
+            return current.getSolutionPath(), nodesExpanded, maxFringeSize
 
         # Expansion
         nodesExpanded += 1
-        
-        # Generate successors in REVERSE order if using LIFO stack, 
-        # to ensure the first specified move is explored deepest first.
-        # Example: if order is 'DULR', we process 'R', then 'L', 'U', 'D' so 'D' 
-        # is the last one pushed and therefore the first one popped (deepest exploration).
-        # We also want to reverse the successors list itself.
-        successors = currentState.getSuccessors(order)
-        
-        # Iterate over successors in reverse order
-        for successor in reversed(successors):
-            
-            if successor not in visited:
-                visited.add(successor)
-                frontier.append(successor)
 
-    # Puzzle is unsolvable
+        # Build local order (for this expansion)
+        if random_mode:
+            letters = base_letters[:]   # ['D','U','L','R']
+            random.shuffle(letters)
+            # VERY IMPORTANT: prevent the first character from being 'R'
+            if letters[0] == 'R':
+                # rotate one position to ensure it does NOT start with 'R'
+                letters = letters[1:] + letters[:1]
+            local_order = ''.join(letters)
+        else:
+            local_order = ''.join(base_letters)
+
+        # Never pass 'R' to getSuccessors; always a permutation of D/U/L/R
+        successors = current.getSuccessors(order=local_order)
+
+        # Push in REVERSE so that the first of local_order is the next to come out
+        for child in reversed(successors):
+            k = key_of(child)
+            if k not in seen:
+                seen.add(k)          # mark ON PUSH
+                stack.append(child)
+
+        if len(stack) > maxFringeSize:
+            maxFringeSize = len(stack)
+
+    # Not found (should not occur with depth 3 input)
     return None
 
 

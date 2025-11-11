@@ -21,7 +21,7 @@ from searchAlgorithms import (
 )
 
 # Constants
-INPUT_FILE_PATH = (r"input.txt")
+INPUT_FILE_PATH = (r"input2.txt")
 
 # Global map for easier selection of search functions
 SEARCH_FUNCTIONS = {
