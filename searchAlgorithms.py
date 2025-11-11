@@ -148,109 +148,87 @@ def depthFirstSearch(initialState, goalState, order, timeLimit=15):
 
 
 # ---------------------------- 3. Iterative Deepening Depth-First Search (IDFS) ----------------------------
-def depthLimitedSearch(currentState, goalState, order, depthLimit, visited, nodesExpanded):
+def depthLimitedSearch(node, goalState, order, limit, onPath, nodesExpanded):
     """
-    Performs Depth-Limited Search (DLS), a recursive subroutine for IDFS.
-
-    Args:
-        currentState (PuzzleState): The current node to check.
-        goalState (PuzzleState): The target goal configuration.
-        order (str): The order of successor expansion (used to determine child order).
-        depthLimit (int): The maximum depth to explore in this iteration.
-        visited (set): Set of states visited ALONG the current path (to prevent cycles).
-        nodesExpanded (list[int]): Counter for expanded nodes, passed as a mutable list [0].
-
-    Returns:
-        tuple | str: (solutionPath, nodesExpanded) if goal is found, "cutoff" if the 
-                     depth limit is reached, or None if no solution is found within 
-                     the current limit and no cutoff occurred.
+    DLS (canonical version): returns
+      - ("solution", nodesExpanded) if it finds the goal,
+      - "cutoff" if it exhausted the depth limit in some branch,
+      - None if exhaustive and there is no solution at this depth.
     """
-    
-    # 1. Check for goal state
-    if currentState.isGoal(goalState):
-        return currentState.getSolutionPath(), nodesExpanded[0]
+    # 1) Goal check?
+    if node.isGoal(goalState):
+        return node.getSolutionPath(), nodesExpanded[0]
 
-    # 2. Check depth limit
-    if currentState.gCost >= depthLimit:
-        return "cutoff", nodesExpanded[0]
+    # 2) Out of depth budget?
+    if limit == 0:
+        return "cutoff"
 
-    # 3. Expansion
-    nodesExpanded[0] += 1
-    
-    cutoffOccurred = False
-    
-    # Generate successors
-    successors = currentState.getSuccessors(order)
+    cutoff_occurred = False
 
-    # Iterate over successors
-    for successor in successors:
-        
-        # Prevent cycles within the current path (crucial for DFS/DLS correctness)
-        if successor not in visited:
-            visited.add(successor)
-            
-            # Recursive call to DLS
-            result = depthLimitedSearch(successor, goalState, order, depthLimit, visited, nodesExpanded)
-            
-            # Remove from 'visited' as we backtrack (this state is no longer on the current path)
-            visited.remove(successor)
+    # 3) Expand children in deterministic order (no randomness in IDFS)
+    for child in node.getSuccessors(order=order):
+        if child in onPath:
+            continue  # avoid loops in the current branch
 
-            if result == "cutoff":
-                cutoffOccurred = True
-            elif result is not None:
-                # Goal found: return the complete result
-                return result
+        onPath.add(child)
+        nodesExpanded[0] += 1
 
-    # Return "cutoff" if any descendant returned "cutoff", otherwise None (search space exhausted at this branch)
-    return "cutoff" if cutoffOccurred else None
+        result = depthLimitedSearch(child, goalState, order, limit - 1, onPath, nodesExpanded)
+
+        onPath.remove(child)
+
+        if result == "cutoff":
+            cutoff_occurred = True
+        elif result is not None:
+            # Found solution in a descendant
+            return result
+
+    # 4) Result propagation
+    return "cutoff" if cutoff_occurred else None
 
 
-def iterativeDeepeningDFS(initialState, goalState, order, timeLimit=15):
+def iterativeDeepeningDFS(initialState, goalState, order, timeLimit=60):
     """
-    Performs Iterative Deepening Depth-First Search (IDFS).
-
-    Args:
-        initialState (PuzzleState): The initial configuration.
-        goalState (PuzzleState): The target goal configuration.
-        order (str): The order of successor expansion.
-        timeLimit (int): Maximum time (in seconds) allowed for the search.
-
-    Returns:
-        tuple: (solutionPath, totalNodesExpanded, maxFringeSize) or None if unsolvable.
+    IDFS: increments limit 0,1,2,... until finding a solution or running out of time.
     """
-    startTime = time.time()
-    maxFringeSize = 1
+    import time
+    start = time.time()
+
+    # Normalize order and avoid randomness in IDFS
+    order = (order or "DULR").upper()
+    if order in ("R", "RAND", "RANDOM"):
+        order = "DULR"  # deterministic for reproducibility
+
     totalNodesExpanded = 0
-    
-    # Set a reasonable maximum depth
-    maxDepth = 50 
-    
-    for depthLimit in range(maxDepth):
-        
-        if time.time() - startTime > timeLimit:
-            print(f"Warning: Time limit exceeded ({timeLimit}s) for IDFS.")
-            return None 
+    maxFringeSize = 1
 
-        # 'visited' is local to the DLS call, preventing cycles *within the current path*
-        visited = {initialState} 
-        nodesExpandedCurrentIteration = [0] 
-        
-        # Call DLS
-        result = depthLimitedSearch(initialState, goalState, order, depthLimit, visited, nodesExpandedCurrentIteration)
-        
-        totalNodesExpanded += nodesExpandedCurrentIteration[0]
-        maxFringeSize = max(maxFringeSize, depthLimit + 1)
-        
-        if result is not None and result != "cutoff":
-            # Solution found!
-            solutionPath, _ = result 
-            return solutionPath, totalNodesExpanded, maxFringeSize
+    # A reasonable upper limit; for 3x3 << 50 is enough
+    MAX_DEPTH = 50
 
-        elif result is None:
-            # Search space exhausted (no cutoff)
+    for depth in range(0, MAX_DEPTH + 1):
+        if time.time() - start > timeLimit:
             return None
 
-    return None # If maxDepth is reached
+        onPath = {initialState}    # only for the current iteration
+        nodesExpandedIter = [0]
+
+        result = depthLimitedSearch(initialState, goalState, order, depth, onPath, nodesExpandedIter)
+
+        totalNodesExpanded += nodesExpandedIter[0]
+        # In IDFS the approximate "max frontier" = current depth + 1
+        if depth + 1 > maxFringeSize:
+            maxFringeSize = depth + 1
+
+        if result is None:
+            # Exhaustive search at this limit without cutoffs -> no solution
+            return None
+        if result != "cutoff":
+            # Solution found!
+            solutionPath, _ = result
+            return solutionPath, totalNodesExpanded, maxFringeSize
+
+    # Exhausted MAX_DEPTH without solution
+    return None
 
 
 # ---------------------------- 4. Best-First Search (Greedy Search) ----------------------------

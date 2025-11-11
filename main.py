@@ -37,7 +37,7 @@ SEARCH_FUNCTIONS = {
 # Functions
 def visualizeSolution(initialState, solutionPath):
     """
-    Toma el estado inicial y la ruta de solución para visualizar el proceso paso a paso.
+    Takes the initial state and the solution path to visualize the process step by step.
     """
     if not solutionPath:
         print("\n--- There is no solution to visualize. ---")
@@ -49,16 +49,16 @@ def visualizeSolution(initialState, solutionPath):
 
     currentState = initialState
 
-    # Estado inicial
+    # Initial state
     print("\n--- Step 0: Initial State ---")
     currentState.printBoard()
     print("-" * 20)
 
     for i, action in enumerate(solutionPath, start=1):
-        # Generar SIEMPRE en orden determinista y filtrar por la acción buscada
+        # Always generate in a deterministic order and filter by the sought action
         successors = currentState.getSuccessors(order='LRUD')
 
-        # Buscar el sucesor cuya acción coincida exactamente con el paso de la solución
+        # Find the successor whose action exactly matches the solution step
         nextState = None
         for s in successors:
             if s.action == action:
@@ -66,7 +66,7 @@ def visualizeSolution(initialState, solutionPath):
                 break
 
         if nextState is None:
-            # Información de depuración útil si algo no cuadra
+            # Useful debugging information if something doesn't match
             print(f"ERROR: The move '{action}' is invalid from this state at step {i}.")
             print("Current board:")
             currentState.printBoard()
