@@ -5,5 +5,5 @@ POR HACER:
 
 COMPROBAR:
 
-    - Los algoritmo a veces encuentran la solucion, muchas veces no, es normal? es asi? o deberiamos de repararlos porque no funcionan bien?
+    - Soluccionar el problema con el algoritmo 2 (R y DULR) (No funciona correctamente)
 
