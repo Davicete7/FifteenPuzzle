@@ -17,7 +17,7 @@ MEMORY_LIMIT = 50000
 
 # Functions
 # ---------------------------- 1. Breadth-First Search (BFS) ----------------------------
-def breadthFirstSearch(initialState, goalState, order, timeLimit=60):
+def breadthFirstSearch(initialState, goalState, order, timeLimit=15):
     """
     Performs the Breadth-First Search (BFS) algorithm.
 
@@ -81,7 +81,7 @@ def breadthFirstSearch(initialState, goalState, order, timeLimit=60):
 
 
 # ---------------------------- 2. Depth-First Search (DFS) ----------------------------
-def depthFirstSearch(initialState, goalState, order, timeLimit=60):
+def depthFirstSearch(initialState, goalState, order, timeLimit=15):
     """
     Performs the Depth-First Search (DFS) algorithm.
     Uses a stack (LIFO) and a strict visited set to prevent infinite loops.
@@ -205,7 +205,7 @@ def depthLimitedSearch(currentState, goalState, order, depthLimit, visited, node
     return "cutoff" if cutoffOccurred else None
 
 
-def iterativeDeepeningDFS(initialState, goalState, order, timeLimit=60):
+def iterativeDeepeningDFS(initialState, goalState, order, timeLimit=15):
     """
     Performs Iterative Deepening Depth-First Search (IDFS).
 
@@ -254,7 +254,7 @@ def iterativeDeepeningDFS(initialState, goalState, order, timeLimit=60):
 
 
 # ---------------------------- 4. Best-First Search (Greedy Search) ----------------------------
-def bestFirstSearch(initialState, goalState, h_func, timeLimit=60):
+def bestFirstSearch(initialState, goalState, h_func, timeLimit=15):
     """
     Performs the Best-First Search (Greedy Search) algorithm.
     Expands nodes based on the lowest heuristic cost (hCost).
@@ -325,7 +325,7 @@ def bestFirstSearch(initialState, goalState, h_func, timeLimit=60):
     return None
 
 # ---------------------------- 5. A* Search ----------------------------
-def aStarSearch(initialState, goalState, h_func, timeLimit=60):
+def aStarSearch(initialState, goalState, h_func, timeLimit=15):
     """
     Performs the A* Search algorithm.
     Expands nodes based on the lowest total estimated cost: f(n) = g(n) + h(n).
@@ -419,7 +419,7 @@ def aStarSearch(initialState, goalState, h_func, timeLimit=60):
 
 
 # ---------------------------- 6. Simplified Memory-Bounded A* (SMA*) ----------------------------
-def smaStarSearch(initialState, goalState, h_func, timeLimit=60):
+def smaStarSearch(initialState, goalState, h_func, timeLimit=15):
     """
     Realiza la búsqueda SMA* (Simplified Memory-Bounded A*).
 
