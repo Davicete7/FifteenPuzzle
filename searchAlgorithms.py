@@ -13,7 +13,7 @@ import sys
 from queue import PriorityQueue
 
 # Constants
-MEMORY_LIMIT = 50000
+MEMORY_LIMIT = 100000000000
 
 # Functions
 # ---------------------------- 1. Breadth-First Search (BFS) ----------------------------
