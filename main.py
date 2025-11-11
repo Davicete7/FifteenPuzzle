@@ -46,44 +46,42 @@ def visualizeSolution(initialState, solutionPath):
     print("\n" + "="*50)
     print("🎬 START OF SOLUTION VISUALIZATION 🎬")
     print("="*50)
-    
+
     currentState = initialState
-    
-    # Muestra el estado inicial
+
+    # Estado inicial
     print("\n--- Step 0: Initial State ---")
     currentState.printBoard()
     print("-" * 20)
-    
-    # Recorre cada acción de la ruta
-    for i, action in enumerate(solutionPath):
-        # Generamos el siguiente estado. 
-        # NOTA: getSuccessors genera una lista, pero solo un sucesor corresponde a 'action'.
-        
-        # Obtenemos el único sucesor que corresponde a la acción.
-        # Esto asume que PuzzleState.getSuccessors puede tomar un orden de un solo movimiento.
-        # Si no, necesitamos obtener todos y buscar el que coincide con 'action'.
-        
-        # Una forma robusta:
-        successors = currentState.getSuccessors(order=action)
-        
-        # Si 'successors' contiene estados que resultan del movimiento 'action'
-        if successors and successors[0].action == action:
-            nextState = successors[0]
-            
-            # Reemplazamos el estado actual con el siguiente para la siguiente iteración
-            currentState = nextState
 
-            print(f"\n--- Step {i+1}: Move {action} ---")
+    for i, action in enumerate(solutionPath, start=1):
+        # Generar SIEMPRE en orden determinista y filtrar por la acción buscada
+        successors = currentState.getSuccessors(order='LRUD')
+
+        # Buscar el sucesor cuya acción coincida exactamente con el paso de la solución
+        nextState = None
+        for s in successors:
+            if s.action == action:
+                nextState = s
+                break
+
+        if nextState is None:
+            # Información de depuración útil si algo no cuadra
+            print(f"ERROR: The move '{action}' is invalid from this state at step {i}.")
+            print("Current board:")
             currentState.printBoard()
             print("-" * 20)
-        else:
-            # Esto no debería ocurrir si el algoritmo de búsqueda funcionó correctamente.
-            print(f"ERROR: The move '{action}' failed at step {i+1}.")
-            break
+            return
+
+        currentState = nextState
+        print(f"\n--- Step {i}: Move {action} ---")
+        currentState.printBoard()
+        print("-" * 20)
 
     print("\n" + "="*50)
     print("✅ END OF VISUALIZATION. Final State Achieved.")
     print("="*50)
+
 
 def readInput():
     """
