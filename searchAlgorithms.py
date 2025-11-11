@@ -48,7 +48,7 @@ def breadthFirstSearch(initialState, goalState, order, timeLimit=15):
         
         # Check time limit
         if time.time() - startTime > timeLimit:
-            print("Warning: Time limit exceeded (60s) for BFS.")
+            print("Warning: Time limit exceeded (15s) for BFS.")
             return None 
 
         # Update max fringe size for statistics
@@ -112,7 +112,7 @@ def depthFirstSearch(initialState, goalState, order, timeLimit=15):
         
         # Check time limit
         if time.time() - startTime > timeLimit:
-            print("Warning: Time limit exceeded (60s) for DFS.")
+            print("Warning: Time limit exceeded (15s) for DFS.")
             return None 
             
         # Update max fringe size for statistics
@@ -267,7 +267,7 @@ def bestFirstSearch(initialState, goalState, h_func, timeLimit=15):
         
         # Check time limit
         if time.time() - startTime > timeLimit:
-            print("Warning: Time limit exceeded (60s) for Best-First Search.")
+            print("Warning: Time limit exceeded (15s) for Best-First Search.")
             return None 
             
         # Update max fringe size
@@ -345,7 +345,7 @@ def aStarSearch(initialState, goalState, h_func, timeLimit=15):
         
         # Check time limit
         if time.time() - startTime > timeLimit:
-            print("Warning: Time limit exceeded (60s) for A* Search.")
+            print("Warning: Time limit exceeded (15s) for A* Search.")
             return None 
             
         # Update max fringe size
@@ -440,7 +440,7 @@ def smaStarSearch(initialState, goalState, h_func, timeLimit=15):
         
         # Comprobación de límite de tiempo
         if time.time() - startTime > timeLimit:
-            sys.stderr.write("Warning: Time limit exceeded (60s) for SMA*.\n")
+            sys.stderr.write("Warning: Time limit exceeded (15s) for SMA*.\n")
             return None 
 
         # Actualizar el tamaño máximo de la frontera
