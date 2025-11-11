@@ -7,4 +7,3 @@ COMPROBAR:
 
     - Los algoritmo a veces encuentran la solucion, muchas veces no, es normal? es asi? o deberiamos de repararlos porque no funcionan bien?
 
-    - La visualiazción de las soluciones por STEPS falla y solo se visualiza el primer o segundo STEP de la solución
