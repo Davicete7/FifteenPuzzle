@@ -1,7 +1,9 @@
 POR HACER:
 
     - Realizar toda la documentacion (pydoc)
-    - Realizar el report con la comparacion de los algoritmos, etc.. (Lo que pone en el enunciado de la Task 3)
+    - REPORT (Al finalizar añadir documento al projecto):
+        Punto 4 --> Poner enlace a la documentacion generada con py doc (enlace a archivo en gitHub)
+
 
 COMPROBAR:
 
