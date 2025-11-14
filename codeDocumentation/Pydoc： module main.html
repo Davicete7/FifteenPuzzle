@@ -1,0 +1,70 @@
+<!DOCTYPE > <html lang=en><!--
+ Page saved with SingleFile 
+ url: http://localhost:34359/main.html 
+ saved date: Fri Nov 14 2025 17:38:06 GMT+0100 (hora estándar de Europa central)
+--><meta charset=utf-8>
+<title>Pydoc: module main</title>
+<style>body{background-color:#f0f0f8}table.heading tr{background-color:#7799ee}.decor{color:#ffffff}.pkg-content-decor{background-color:#aa55cc}.functions-decor{background-color:#eeaa77}.data-decor{background-color:#55aa55}table.heading tr td.title{vertical-align:bottom}table.heading tr td.extra{vertical-align:bottom;text-align:right}.heading-text{font-family:helvetica,arial}.bigsection{font-size:larger}.title{font-size:x-large}.code{font-family:monospace}table{width:100%;border-spacing:0;border-collapse:collapse;border:0}td{padding:2}td.section-title{vertical-align:bottom}td.multicolumn{width:25%;vertical-align:bottom}td.singlecolumn{width:100%}</style><meta name=referrer content=no-referrer><link type=image/x-icon rel="shortcut icon" href=data:,><link rel=canonical href=http://localhost:34359/main.html><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"><body>
+ <div style=float:left>
+ Python 3.11.5 [tags/v3.11.5:cce6ba9, MSC v.1936 64 bit (AMD64)]<br>Windows-10
+ </div>
+ <div style=float:right>
+ <div style=text-align:center>
+ <a href=http://localhost:34359/index.html>Module Index</a>
+ : <a href=http://localhost:34359/topics.html>Topics</a>
+ : <a href=http://localhost:34359/keywords.html>Keywords</a>
+ </div>
+ <div>
+ <form action=get style=display:inline>
+ <input type=text name=key size=15 value>
+ <input type=submit value=Get>
+ </form>&nbsp;
+ <form action=search style=display:inline>
+ <input type=text name=key size=15 value>
+ <input type=submit value=Search>
+ </form>
+ </div>
+ </div>
+ <div style=clear:both;padding-top:.5em>
+<table class=heading>
+<tbody><tr class="heading-text decor">
+<td class=title>&nbsp;<br><strong class=title>main</strong></td>
+<td class=extra><a href=http://localhost:34359/>index</a><br><a href=file:///c%3A%5Cusers%5Cdavid%20sanchez%5Cdesktop%5Cuni%5C4%C2%BAcurso%5Csemestre%207%C2%BA%5Cartificial%20inteligence%20and%20expert%20system%5Claboratorio%5Ctask%203%5Cfifteenpuzzle%5Cmain.py>c:\users\david sanchez\desktop\uni\4ºcurso\semestre 7º\artificial inteligence and expert system\laboratorio\task 3\fifteenpuzzle\main.py</a></table>
+ <p><span class=code>Task&nbsp;3&nbsp;--&gt;&nbsp;Solving&nbsp;problems&nbsp;by&nbsp;searching&nbsp;-&nbsp;Fifteen&nbsp;puzzle<br>
+&nbsp;<br>
+Authors:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;David&nbsp;Sánchez&nbsp;-&gt;&nbsp;905590@edu.p.lodz.pl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Alfonso&nbsp;Muñoz&nbsp;-&gt;&nbsp;905580@edu.p.lodz.pl</span></p>
+<p>
+<table class=section>
+<tbody><tr class="decor pkg-content-decor heading-text">
+<td class=section-title colspan=3>&nbsp;<br><strong class=bigsection>Modules</strong></tr>
+ 
+<tr><td class="decor pkg-content-decor"><span class=code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><td>&nbsp;</td>
+<td class=singlecolumn><table><tbody><tr><td class=multicolumn><a href=http://localhost:34359/sys.html>sys</a><br>
+<td class=multicolumn><a href=http://localhost:34359/time.html>time</a><br>
+<td class=multicolumn><td class=multicolumn></table></table><p>
+<table class=section>
+<tbody><tr class="decor functions-decor heading-text">
+<td class=section-title colspan=3>&nbsp;<br><strong class=bigsection>Functions</strong></tr>
+ 
+<tr><td class="decor functions-decor"><span class=code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><td>&nbsp;</td>
+<td class=singlecolumn><dl><dt><a name=-getSearchParameters><strong>getSearchParameters</strong></a>(searchType)<dd><span class=code>Prompts&nbsp;the&nbsp;user&nbsp;for&nbsp;the&nbsp;necessary&nbsp;parameter&nbsp;(order&nbsp;or&nbsp;heuristic&nbsp;ID).</span></dl>
+ <dl><dt><a name=-main><strong>main</strong></a>()<dd><span class=code>Main&nbsp;function&nbsp;to&nbsp;run&nbsp;the&nbsp;search&nbsp;algorithm&nbsp;selection&nbsp;menu.</span></dl>
+ <dl><dt><a name=-printMainMenu><strong>printMainMenu</strong></a>()<dd><span class=code>Display&nbsp;the&nbsp;main&nbsp;menu&nbsp;for&nbsp;selecting&nbsp;a&nbsp;search&nbsp;algorithm.</span></dl>
+ <dl><dt><a name=-printResults><strong>printResults</strong></a>(result, startTime, searchType, param)<dd><span class=code>Prints&nbsp;the&nbsp;solution&nbsp;path&nbsp;and&nbsp;statistics&nbsp;to&nbsp;standard&nbsp;output.</span></dl>
+ <dl><dt><a name=-readInput><strong>readInput</strong></a>()<dd><span class=code>Reads&nbsp;the&nbsp;puzzle&nbsp;configuration&nbsp;from&nbsp;the&nbsp;specified&nbsp;file.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tuple[list[list[int]]&nbsp;|&nbsp;None,&nbsp;int&nbsp;|&nbsp;None,&nbsp;int&nbsp;|&nbsp;None]:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;initial&nbsp;board&nbsp;configuration,&nbsp;row&nbsp;count&nbsp;(R),&nbsp;and&nbsp;column&nbsp;count&nbsp;(C).</span></dl>
+ <dl><dt><a name=-visualizeSolution><strong>visualizeSolution</strong></a>(initialState, solutionPath)<dd><span class=code>Takes&nbsp;the&nbsp;initial&nbsp;state&nbsp;and&nbsp;the&nbsp;solution&nbsp;path&nbsp;to&nbsp;visualize&nbsp;the&nbsp;process&nbsp;step&nbsp;by&nbsp;step.</span></dl>
+</table><p>
+<table class=section>
+<tbody><tr class="decor data-decor heading-text">
+<td class=section-title colspan=3>&nbsp;<br><strong class=bigsection>Data</strong></tr>
+ 
+<tr><td class="decor data-decor"><span class=code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><td>&nbsp;</td>
+<td class=singlecolumn><strong>HEURISTIC_MAP</strong> = {0: &lt;function heuristicZero&gt;, 1: &lt;function heuristicMisplacedTiles&gt;, 2: &lt;function heuristicManhattanDistance&gt;}<br>
+<strong>INPUT_FILE_PATH</strong> = 'input2.txt'<br>
+<strong>SEARCH_FUNCTIONS</strong> = {'1': ('BFS', &lt;function breadthFirstSearch&gt;, 'order'), '2': ('DFS', &lt;function depthFirstSearch&gt;, 'order'), '3': ('IDFS', &lt;function iterativeDeepeningDFS&gt;, 'order'), '4': ('Best First', &lt;function bestFirstSearch&gt;, 'heuristic'), '5': ('A*', &lt;function aStarSearch&gt;, 'heuristic'), '6': ('SMA*', &lt;function smaStarSearch&gt;, 'heuristic')}</table></p></div>

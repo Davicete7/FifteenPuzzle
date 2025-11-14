@@ -1,0 +1,113 @@
+<!DOCTYPE > <html lang=en><!--
+ Page saved with SingleFile 
+ url: http://localhost:34359/searchAlgorithms.html 
+ saved date: Fri Nov 14 2025 17:38:38 GMT+0100 (hora estándar de Europa central)
+--><meta charset=utf-8>
+<title>Pydoc: module searchAlgorithms</title>
+<style>body{background-color:#f0f0f8}table.heading tr{background-color:#7799ee}.decor{color:#ffffff}.pkg-content-decor{background-color:#aa55cc}.functions-decor{background-color:#eeaa77}.data-decor{background-color:#55aa55}table.heading tr td.title{vertical-align:bottom}table.heading tr td.extra{vertical-align:bottom;text-align:right}.heading-text{font-family:helvetica,arial}.bigsection{font-size:larger}.title{font-size:x-large}.code{font-family:monospace}table{width:100%;border-spacing:0;border-collapse:collapse;border:0}td{padding:2}td.section-title{vertical-align:bottom}td.multicolumn{width:25%;vertical-align:bottom}td.singlecolumn{width:100%}</style><meta name=referrer content=no-referrer><link type=image/x-icon rel="shortcut icon" href=data:,><link rel=canonical href=http://localhost:34359/searchAlgorithms.html><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"><body>
+ <div style=float:left>
+ Python 3.11.5 [tags/v3.11.5:cce6ba9, MSC v.1936 64 bit (AMD64)]<br>Windows-10
+ </div>
+ <div style=float:right>
+ <div style=text-align:center>
+ <a href=http://localhost:34359/index.html>Module Index</a>
+ : <a href=http://localhost:34359/topics.html>Topics</a>
+ : <a href=http://localhost:34359/keywords.html>Keywords</a>
+ </div>
+ <div>
+ <form action=get style=display:inline>
+ <input type=text name=key size=15 value>
+ <input type=submit value=Get>
+ </form>&nbsp;
+ <form action=search style=display:inline>
+ <input type=text name=key size=15 value>
+ <input type=submit value=Search>
+ </form>
+ </div>
+ </div>
+ <div style=clear:both;padding-top:.5em>
+<table class=heading>
+<tbody><tr class="heading-text decor">
+<td class=title>&nbsp;<br><strong class=title>searchAlgorithms</strong></td>
+<td class=extra><a href=http://localhost:34359/>index</a><br><a href=file:///c%3A%5Cusers%5Cdavid%20sanchez%5Cdesktop%5Cuni%5C4%C2%BAcurso%5Csemestre%207%C2%BA%5Cartificial%20inteligence%20and%20expert%20system%5Claboratorio%5Ctask%203%5Cfifteenpuzzle%5Csearchalgorithms.py>c:\users\david sanchez\desktop\uni\4ºcurso\semestre 7º\artificial inteligence and expert system\laboratorio\task 3\fifteenpuzzle\searchalgorithms.py</a></table>
+ <p><span class=code>Implementation&nbsp;of&nbsp;different&nbsp;search&nbsp;algorithms&nbsp;for&nbsp;solving&nbsp;the&nbsp;N-Puzzle&nbsp;problem.<br>
+&nbsp;<br>
+Author:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;David&nbsp;Sanchez&nbsp;--&gt;&nbsp;905590@edu.p.lodz.pl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Alfonso&nbsp;Muñoz&nbsp;--&gt;&nbsp;905580@edu.p.lodz.pl</span></p>
+<p>
+<table class=section>
+<tbody><tr class="decor pkg-content-decor heading-text">
+<td class=section-title colspan=3>&nbsp;<br><strong class=bigsection>Modules</strong></tr>
+ 
+<tr><td class="decor pkg-content-decor"><span class=code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><td>&nbsp;</td>
+<td class=singlecolumn><table><tbody><tr><td class=multicolumn><a href=http://localhost:34359/sys.html>sys</a><br>
+<td class=multicolumn><a href=http://localhost:34359/time.html>time</a><br>
+<td class=multicolumn><td class=multicolumn></table></table><p>
+<table class=section>
+<tbody><tr class="decor functions-decor heading-text">
+<td class=section-title colspan=3>&nbsp;<br><strong class=bigsection>Functions</strong></tr>
+ 
+<tr><td class="decor functions-decor"><span class=code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><td>&nbsp;</td>
+<td class=singlecolumn><dl><dt><a name=-aStarSearch><strong>aStarSearch</strong></a>(initialState, goalState, h_func, timeLimit=15)<dd><span class=code>Performs&nbsp;the&nbsp;A*&nbsp;Search&nbsp;algorithm.<br>
+Expands&nbsp;nodes&nbsp;based&nbsp;on&nbsp;the&nbsp;lowest&nbsp;total&nbsp;estimated&nbsp;cost:&nbsp;f(n)&nbsp;=&nbsp;g(n)&nbsp;+&nbsp;h(n).<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;initialState&nbsp;(PuzzleState):&nbsp;The&nbsp;starting&nbsp;configuration.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goalState&nbsp;(PuzzleState):&nbsp;The&nbsp;target&nbsp;configuration.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;h_func&nbsp;(function):&nbsp;The&nbsp;heuristic&nbsp;function&nbsp;(e.g.,&nbsp;heuristicManhattanDistance).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timeLimit&nbsp;(int):&nbsp;Maximum&nbsp;time&nbsp;(in&nbsp;seconds)&nbsp;allowed&nbsp;for&nbsp;the&nbsp;search.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tuple:&nbsp;(solutionPath,&nbsp;nodesExpanded,&nbsp;maxFringeSize)&nbsp;or&nbsp;None&nbsp;if&nbsp;unsolvable.</span></dl>
+ <dl><dt><a name=-bestFirstSearch><strong>bestFirstSearch</strong></a>(initialState, goalState, h_func, timeLimit=15)<dd><span class=code>Performs&nbsp;the&nbsp;Best-First&nbsp;Search&nbsp;(Greedy&nbsp;Search)&nbsp;algorithm.<br>
+Expands&nbsp;nodes&nbsp;based&nbsp;on&nbsp;the&nbsp;lowest&nbsp;heuristic&nbsp;cost&nbsp;(hCost).<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;initialState&nbsp;(PuzzleState):&nbsp;The&nbsp;starting&nbsp;configuration.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goalState&nbsp;(PuzzleState):&nbsp;The&nbsp;target&nbsp;configuration.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;h_func&nbsp;(function):&nbsp;The&nbsp;heuristic&nbsp;function&nbsp;(e.g.,&nbsp;heuristicManhattanDistance).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timeLimit&nbsp;(int):&nbsp;Maximum&nbsp;time&nbsp;(in&nbsp;seconds)&nbsp;allowed&nbsp;for&nbsp;the&nbsp;search.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tuple:&nbsp;(solutionPath,&nbsp;nodesExpanded,&nbsp;maxFringeSize)&nbsp;or&nbsp;None&nbsp;if&nbsp;unsolvable.</span></dl>
+ <dl><dt><a name=-breadthFirstSearch><strong>breadthFirstSearch</strong></a>(initialState, goalState, order, timeLimit=15)<dd><span class=code>Performs&nbsp;the&nbsp;Breadth-First&nbsp;Search&nbsp;(BFS)&nbsp;algorithm.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;initialState&nbsp;(PuzzleState):&nbsp;The&nbsp;starting&nbsp;configuration.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goalState&nbsp;(PuzzleState):&nbsp;The&nbsp;target&nbsp;configuration.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;order&nbsp;(str):&nbsp;The&nbsp;order&nbsp;of&nbsp;successor&nbsp;expansion&nbsp;(e.g.,&nbsp;'DULR').<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timeLimit&nbsp;(int):&nbsp;Maximum&nbsp;time&nbsp;(in&nbsp;seconds)&nbsp;allowed&nbsp;for&nbsp;the&nbsp;search.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tuple:&nbsp;(solutionPath,&nbsp;nodesExpanded,&nbsp;maxFringeSize)&nbsp;or&nbsp;None&nbsp;if&nbsp;unsolvable.</span></dl>
+ <dl><dt><a name=-depthFirstSearch><strong>depthFirstSearch</strong></a>(initialState, goalState, order, timeLimit=15)<dd><span class=code>Depth-First&nbsp;Search&nbsp;with&nbsp;adaptive&nbsp;depth&nbsp;limit:<br>
+&nbsp;&nbsp;-&nbsp;Uses&nbsp;a&nbsp;depth&nbsp;limit&nbsp;(maxDepth)&nbsp;computed&nbsp;from&nbsp;the&nbsp;Manhattan&nbsp;heuristic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;avoid&nbsp;searching&nbsp;too&nbsp;deep&nbsp;in&nbsp;"bad"&nbsp;branches.<br>
+&nbsp;&nbsp;-&nbsp;Respects&nbsp;the&nbsp;expansion&nbsp;order&nbsp;specified&nbsp;by&nbsp;'order'.<br>
+&nbsp;&nbsp;-&nbsp;If&nbsp;'order'&nbsp;starts&nbsp;with&nbsp;'R',&nbsp;uses&nbsp;a&nbsp;random&nbsp;order&nbsp;at&nbsp;each&nbsp;expansion.</span></dl>
+ <dl><dt><a name=-depthLimitedSearch><strong>depthLimitedSearch</strong></a>(node, goalState, order, limit, onPath, nodesExpanded)<dd><span class=code>DLS&nbsp;(canonical&nbsp;version):&nbsp;returns<br>
+&nbsp;&nbsp;-&nbsp;("solution",&nbsp;nodesExpanded)&nbsp;if&nbsp;it&nbsp;finds&nbsp;the&nbsp;goal,<br>
+&nbsp;&nbsp;-&nbsp;"cutoff"&nbsp;if&nbsp;it&nbsp;exhausted&nbsp;the&nbsp;depth&nbsp;limit&nbsp;in&nbsp;some&nbsp;branch,<br>
+&nbsp;&nbsp;-&nbsp;None&nbsp;if&nbsp;exhaustive&nbsp;and&nbsp;there&nbsp;is&nbsp;no&nbsp;solution&nbsp;at&nbsp;this&nbsp;depth.</span></dl>
+ <dl><dt><a name=-iterativeDeepeningDFS><strong>iterativeDeepeningDFS</strong></a>(initialState, goalState, order, timeLimit=60)<dd><span class=code>IDFS:&nbsp;increments&nbsp;limit&nbsp;0,1,2,...&nbsp;until&nbsp;finding&nbsp;a&nbsp;solution&nbsp;or&nbsp;running&nbsp;out&nbsp;of&nbsp;time.</span></dl>
+ <dl><dt><a name=-smaStarSearch><strong>smaStarSearch</strong></a>(initialState, goalState, h_func, timeLimit=15)<dd><span class=code>Realiza&nbsp;la&nbsp;búsqueda&nbsp;SMA*&nbsp;(Simplified&nbsp;Memory-Bounded&nbsp;A*).<br>
+&nbsp;<br>
+SMA*&nbsp;limita&nbsp;el&nbsp;tamaño&nbsp;de&nbsp;la&nbsp;frontera&nbsp;(nodos&nbsp;a&nbsp;explorar).&nbsp;Si&nbsp;el&nbsp;límite&nbsp;de&nbsp;<br>
+memoria&nbsp;se&nbsp;excede,&nbsp;el&nbsp;nodo&nbsp;con&nbsp;el&nbsp;F-cost&nbsp;más&nbsp;alto&nbsp;(el&nbsp;peor)&nbsp;es&nbsp;desechado.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;initialState&nbsp;(PuzzleState):&nbsp;La&nbsp;configuración&nbsp;inicial.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;goalState&nbsp;(PuzzleState):&nbsp;La&nbsp;configuración&nbsp;objetivo.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;h_func&nbsp;(function):&nbsp;La&nbsp;función&nbsp;heurística&nbsp;a&nbsp;utilizar.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timeLimit&nbsp;(int):&nbsp;Tiempo&nbsp;máximo&nbsp;(en&nbsp;segundos)&nbsp;permitido&nbsp;para&nbsp;la&nbsp;búsqueda.<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tuple:&nbsp;(solutionPath,&nbsp;nodesExpanded,&nbsp;maxFringeSize)&nbsp;o&nbsp;None&nbsp;si&nbsp;no&nbsp;se&nbsp;resuelve.</span></dl>
+</table><p>
+<table class=section>
+<tbody><tr class="decor data-decor heading-text">
+<td class=section-title colspan=3>&nbsp;<br><strong class=bigsection>Data</strong></tr>
+ 
+<tr><td class="decor data-decor"><span class=code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><td>&nbsp;</td>
+<td class=singlecolumn><strong>MEMORY_LIMIT</strong> = 100000000000</table></p></div>

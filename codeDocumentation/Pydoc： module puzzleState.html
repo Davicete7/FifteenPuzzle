@@ -1,0 +1,113 @@
+<!DOCTYPE > <html lang=en><!--
+ Page saved with SingleFile 
+ url: http://localhost:34359/puzzleState.html 
+ saved date: Fri Nov 14 2025 17:38:29 GMT+0100 (hora estándar de Europa central)
+--><meta charset=utf-8>
+<title>Pydoc: module puzzleState</title>
+<style>body{background-color:#f0f0f8}table.heading tr{background-color:#7799ee}.decor{color:#ffffff}.title-decor{background-color:#ffc8d8;color:#000000}.pkg-content-decor{background-color:#aa55cc}.index-decor{background-color:#ee77aa}table.heading tr td.title{vertical-align:bottom}table.heading tr td.extra{vertical-align:bottom;text-align:right}.heading-text{font-family:helvetica,arial}.bigsection{font-size:larger}.title{font-size:x-large}.code{font-family:monospace}table{width:100%;border-spacing:0;border-collapse:collapse;border:0}td{padding:2}td.section-title{vertical-align:bottom}td.multicolumn{width:25%;vertical-align:bottom}td.singlecolumn{width:100%}</style><meta name=referrer content=no-referrer><link type=image/x-icon rel="shortcut icon" href=data:,><link rel=canonical href=http://localhost:34359/puzzleState.html><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"><body>
+ <div style=float:left>
+ Python 3.11.5 [tags/v3.11.5:cce6ba9, MSC v.1936 64 bit (AMD64)]<br>Windows-10
+ </div>
+ <div style=float:right>
+ <div style=text-align:center>
+ <a href=http://localhost:34359/index.html>Module Index</a>
+ : <a href=http://localhost:34359/topics.html>Topics</a>
+ : <a href=http://localhost:34359/keywords.html>Keywords</a>
+ </div>
+ <div>
+ <form action=get style=display:inline>
+ <input type=text name=key size=15 value>
+ <input type=submit value=Get>
+ </form>&nbsp;
+ <form action=search style=display:inline>
+ <input type=text name=key size=15 value>
+ <input type=submit value=Search>
+ </form>
+ </div>
+ </div>
+ <div style=clear:both;padding-top:.5em>
+<table class=heading>
+<tbody><tr class="heading-text decor">
+<td class=title>&nbsp;<br><strong class=title>puzzleState</strong></td>
+<td class=extra><a href=http://localhost:34359/>index</a><br><a href=file:///c%3A%5Cusers%5Cdavid%20sanchez%5Cdesktop%5Cuni%5C4%C2%BAcurso%5Csemestre%207%C2%BA%5Cartificial%20inteligence%20and%20expert%20system%5Claboratorio%5Ctask%203%5Cfifteenpuzzle%5Cpuzzlestate.py>c:\users\david sanchez\desktop\uni\4ºcurso\semestre 7º\artificial inteligence and expert system\laboratorio\task 3\fifteenpuzzle\puzzlestate.py</a></table>
+ <p><span class=code>Contains&nbsp;the&nbsp;<a href=#PuzzleState>PuzzleState</a>&nbsp;class&nbsp;representing&nbsp;a&nbsp;state&nbsp;in&nbsp;the&nbsp;N-Puzzle&nbsp;problem.<br>
+&nbsp;<br>
+Information:<br>
+-&nbsp;Each&nbsp;state&nbsp;encapsulates&nbsp;the&nbsp;board&nbsp;configuration,&nbsp;position&nbsp;of&nbsp;the&nbsp;empty&nbsp;tile&nbsp;(0),<br>
+-&nbsp;and&nbsp;methods&nbsp;for&nbsp;generating&nbsp;successors,&nbsp;checking&nbsp;goal&nbsp;state,&nbsp;and&nbsp;tracing&nbsp;solution&nbsp;path.<br>
+&nbsp;<br>
+Author:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;David&nbsp;Sanchez&nbsp;--&gt;&nbsp;905590@edu.p.lodz.pl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Alfonso&nbsp;Muñoz&nbsp;--&gt;&nbsp;905580@edu.p.lodz.pl</span></p>
+<p>
+<table class=section>
+<tbody><tr class="decor pkg-content-decor heading-text">
+<td class=section-title colspan=3>&nbsp;<br><strong class=bigsection>Modules</strong></tr>
+ 
+<tr><td class="decor pkg-content-decor"><span class=code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><td>&nbsp;</td>
+<td class=singlecolumn><table><tbody><tr><td class=multicolumn><a href=http://localhost:34359/random.html>random</a><br>
+<td class=multicolumn><td class=multicolumn><td class=multicolumn></table></table><p>
+<table class=section>
+<tbody><tr class="decor index-decor heading-text">
+<td class=section-title colspan=3>&nbsp;<br><strong class=bigsection>Classes</strong></tr>
+ 
+<tr><td class="decor index-decor"><span class=code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><td>&nbsp;</td>
+<td class=singlecolumn><dl>
+<dt class=heading-text><a href=http://localhost:34359/builtins.html#object>builtins.object</a>
+<dd>
+<dl>
+<dt class=heading-text><a href=#PuzzleState>PuzzleState</a>
+</dl>
+</dd>
+</dl>
+ <p>
+<table class=section>
+<tbody><tr class="decor title-decor heading-text">
+<td class=section-title colspan=3>&nbsp;<br><a name=PuzzleState>class <strong>PuzzleState</strong></a>(<a href=http://localhost:34359/builtins.html#object>builtins.object</a>)</tr>
+ 
+<tr><td class="decor title-decor" rowspan=2><span class=code>&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class=code><a href=#PuzzleState>PuzzleState</a>(board,&nbsp;parent=None,&nbsp;action=None,&nbsp;gCost=0,&nbsp;hCost=0)<br>
+&nbsp;<br>
+Represents&nbsp;a&nbsp;state&nbsp;of&nbsp;the&nbsp;N-Puzzle&nbsp;problem&nbsp;(e.g.,&nbsp;Fifteen&nbsp;Puzzle).<br>
+&nbsp;<br>
+Attributes&nbsp;(camelCase&nbsp;for&nbsp;variables):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;board&nbsp;(list[list[int]]):&nbsp;The&nbsp;current&nbsp;configuration&nbsp;of&nbsp;the&nbsp;puzzle&nbsp;board.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;rows&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;rows&nbsp;(R).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cols&nbsp;(int):&nbsp;Number&nbsp;of&nbsp;columns&nbsp;(C).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;zeroPos&nbsp;(tuple[int,&nbsp;int]):&nbsp;Position&nbsp;(row,&nbsp;col)&nbsp;of&nbsp;the&nbsp;empty&nbsp;space&nbsp;(0).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;parent&nbsp;(<a href=#PuzzleState>PuzzleState</a>&nbsp;|&nbsp;None):&nbsp;The&nbsp;previous&nbsp;state&nbsp;from&nbsp;which&nbsp;this&nbsp;state&nbsp;was&nbsp;reached.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;action&nbsp;(str&nbsp;|&nbsp;None):&nbsp;The&nbsp;action&nbsp;('L',&nbsp;'R',&nbsp;'U',&nbsp;'D')&nbsp;taken&nbsp;to&nbsp;reach&nbsp;this&nbsp;state.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;gCost&nbsp;(int):&nbsp;Cost&nbsp;from&nbsp;the&nbsp;initial&nbsp;state&nbsp;(depth&nbsp;of&nbsp;the&nbsp;node).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;hCost&nbsp;(int):&nbsp;Estimated&nbsp;cost&nbsp;to&nbsp;the&nbsp;goal&nbsp;state&nbsp;(heuristic&nbsp;value).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fCost&nbsp;(int):&nbsp;Total&nbsp;estimated&nbsp;cost&nbsp;(fCost&nbsp;=&nbsp;gCost&nbsp;+&nbsp;hCost).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lostFCost&nbsp;(int):&nbsp;The&nbsp;lowest&nbsp;fCost&nbsp;of&nbsp;a&nbsp;*pruned*&nbsp;descendant&nbsp;from&nbsp;this&nbsp;node.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Used&nbsp;by&nbsp;SMA*&nbsp;to&nbsp;backtrack.&nbsp;Initialized&nbsp;to&nbsp;hCost.<br>&nbsp;</span></tr>
+<tr><td>&nbsp;</td>
+<td class=singlecolumn>Methods defined here:<br>
+<dl><dt><a name=PuzzleState-__eq__><strong>__eq__</strong></a>(self, other)<dd><span class=code>Defines&nbsp;the&nbsp;equality&nbsp;check&nbsp;(==)&nbsp;between&nbsp;two&nbsp;<a href=#PuzzleState>PuzzleState</a>&nbsp;objects.</span></dl>
+<dl><dt><a name=PuzzleState-__hash__><strong>__hash__</strong></a>(self)<dd><span class=code>Allows&nbsp;the&nbsp;<a href=http://localhost:34359/builtins.html#object>object</a>&nbsp;to&nbsp;be&nbsp;used&nbsp;in&nbsp;sets&nbsp;and&nbsp;as&nbsp;dictionary&nbsp;keys.</span></dl>
+<dl><dt><a name=PuzzleState-__init__><strong>__init__</strong></a>(self, board, parent=None, action=None, gCost=0, hCost=0)<dd><span class=code>Initializes&nbsp;a&nbsp;new&nbsp;<a href=#PuzzleState>PuzzleState</a>.</span></dl>
+<dl><dt><a name=PuzzleState-__lt__><strong>__lt__</strong></a>(self, other)<dd><span class=code>Defines&nbsp;the&nbsp;less&nbsp;than&nbsp;check&nbsp;(&lt;)&nbsp;for&nbsp;the&nbsp;PriorityQueue.<br>
+SMA*&nbsp;uses&nbsp;fCost&nbsp;for&nbsp;ordering,&nbsp;ties&nbsp;are&nbsp;broken&nbsp;by&nbsp;gCost&nbsp;(depth).</span></dl>
+<dl><dt><a name=PuzzleState-__repr__><strong>__repr__</strong></a>(self)<dd><span class=code>String&nbsp;representation&nbsp;of&nbsp;the&nbsp;<a href=http://localhost:34359/builtins.html#object>object</a>&nbsp;for&nbsp;debugging.</span></dl>
+<dl><dt><a name=PuzzleState-getPathFromRoot><strong>getPathFromRoot</strong></a>(self)<dd><span class=code>Helper&nbsp;for&nbsp;SMA*&nbsp;to&nbsp;reconstruct&nbsp;the&nbsp;path&nbsp;of&nbsp;a&nbsp;node&nbsp;to&nbsp;find&nbsp;its&nbsp;root&nbsp;ancestor.</span></dl>
+<dl><dt><a name=PuzzleState-getSolutionPath><strong>getSolutionPath</strong></a>(self)<dd><span class=code>Traces&nbsp;back&nbsp;the&nbsp;parent&nbsp;pointers&nbsp;to&nbsp;reconstruct&nbsp;the&nbsp;solution&nbsp;path.<br>
+Returns&nbsp;a&nbsp;string&nbsp;of&nbsp;actions&nbsp;('L',&nbsp;'R',&nbsp;'U',&nbsp;'D')&nbsp;that&nbsp;lead&nbsp;to&nbsp;the&nbsp;goal.</span></dl>
+<dl><dt><a name=PuzzleState-getSuccessors><strong>getSuccessors</strong></a>(self, order='DULR')<dd><span class=code>Generates&nbsp;successor&nbsp;states&nbsp;based&nbsp;on&nbsp;a&nbsp;specified&nbsp;movement&nbsp;order.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;order&nbsp;(str):&nbsp;String&nbsp;defining&nbsp;the&nbsp;order&nbsp;of&nbsp;movements&nbsp;(e.g.,&nbsp;'DULR').<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;list[<a href=#PuzzleState>PuzzleState</a>]:&nbsp;A&nbsp;list&nbsp;of&nbsp;valid&nbsp;successor&nbsp;states.</span></dl>
+<dl><dt><a name=PuzzleState-isGoal><strong>isGoal</strong></a>(self, goalState)<dd><span class=code>Checks&nbsp;if&nbsp;the&nbsp;current&nbsp;state&nbsp;is&nbsp;the&nbsp;goal&nbsp;state.</span></dl>
+<dl><dt><a name=PuzzleState-printBoard><strong>printBoard</strong></a>(self)<dd><span class=code>Imprime&nbsp;la&nbsp;configuración&nbsp;del&nbsp;tablero&nbsp;de&nbsp;forma&nbsp;legible.</span></dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class=code>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class=code>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+</table></p></table></p></div>
