@@ -11,6 +11,7 @@ from collections import deque
 import time
 import sys
 from queue import PriorityQueue
+from searchUtils import heuristicManhattanDistance
 
 # Constants
 MEMORY_LIMIT = 100000000000
@@ -83,72 +84,87 @@ def breadthFirstSearch(initialState, goalState, order, timeLimit=15):
 # ---------------------------- 2. Depth-First Search (DFS) ----------------------------
 def depthFirstSearch(initialState, goalState, order, timeLimit=15):
     """
-    Robust DFS:
-      - 'seen' marks ON PUSH to avoid duplicates in the frontier
-      - Controlled randomness WITHOUT activating the internal random of getSuccessors
-      - Respects priority with LIFO (push in reverse)
+    Depth-First Search with adaptive depth limit:
+      - Uses a depth limit (maxDepth) computed from the Manhattan heuristic
+        to avoid searching too deep in "bad" branches.
+      - Respects the expansion order specified by 'order'.
+      - If 'order' starts with 'R', uses a random order at each expansion.
     """
     import time, random
 
     start = time.time()
 
-    # Normalize the input order
+    # 1) Compute an adaptive depth limit
+    #    h0 = Manhattan distance from the initial state to the goal
+    h0 = heuristicManhattanDistance(initialState, goalState)
+    maxDepth = max(h0 + 10, 2 * h0)  # you can adjust these margins if desired
+
+    # 2) Normalize the 'order' parameter
     order = (order or "DULR").upper()
     random_mode = order.startswith("R")
-    # Base deterministic order that we will ALWAYS pass to getSuccessors (never 'R')
+
+    # Base deterministic order (we never pass 'R' to getSuccessors)
     base_letters = [c for c in (order if not random_mode else "DULR") if c in "DULR"]
     if not base_letters:
         base_letters = list("DULR")
 
-    # Utility: immutable key of the board (independent of __eq__/__hash__)
+    # Helper function to get an immutable key for the board
     def key_of(state):
         return tuple(tuple(row) for row in state.board)
 
-    stack = [initialState]
-    seen = { key_of(initialState) }   # mark on PUSH
+    # 3) Search structures
+    stack = [(initialState, 0)]  # (state, depth)
+    seen = {key_of(initialState): 0}  # state_key -> minimum depth seen
     nodesExpanded = 0
     maxFringeSize = 1
 
+    # 4) Main DFS loop
     while stack:
+        # Check time limit
         if time.time() - start > timeLimit:
-            print("Warning: Time limit exceeded (15s) for DFS.")
+            print("Warning: Time limit exceeded ({}s) for DFS.".format(timeLimit))
             return None
 
-        current = stack.pop()
+        current, depth = stack.pop()
 
-        # Goal check?
+        # Goal check
         if current.isGoal(goalState):
             return current.getSolutionPath(), nodesExpanded, maxFringeSize
+
+        # If we've reached maximum depth, do not expand this node
+        if depth >= maxDepth:
+            continue
 
         # Expansion
         nodesExpanded += 1
 
-        # Build local order (for this expansion)
+        # Build local expansion order
         if random_mode:
-            letters = base_letters[:]   # ['D','U','L','R']
+            letters = base_letters[:]
             random.shuffle(letters)
-            # VERY IMPORTANT: prevent the first character from being 'R'
-            if letters[0] == 'R':
-                # rotate one position to ensure it does NOT start with 'R'
-                letters = letters[1:] + letters[:1]
-            local_order = ''.join(letters)
+            local_order = "".join(letters)
         else:
-            local_order = ''.join(base_letters)
+            local_order = "".join(base_letters)
 
-        # Never pass 'R' to getSuccessors; always a permutation of D/U/L/R
         successors = current.getSuccessors(order=local_order)
 
-        # Push in REVERSE so that the first of local_order is the next to come out
+        # Push in reverse order to preserve LIFO expansion order of DFS
         for child in reversed(successors):
             k = key_of(child)
-            if k not in seen:
-                seen.add(k)          # mark ON PUSH
-                stack.append(child)
+            newDepth = depth + 1
+            prevDepth = seen.get(k)
+
+            # Only push the child if:
+            #  - it has never been seen, or
+            #  - we found it now at a smaller depth
+            if prevDepth is None or newDepth < prevDepth:
+                seen[k] = newDepth
+                stack.append((child, newDepth))
 
         if len(stack) > maxFringeSize:
             maxFringeSize = len(stack)
 
-    # Not found (should not occur with depth 3 input)
+    # No solution found within given limits
     return None
 
 
